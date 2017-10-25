@@ -9,11 +9,11 @@ var secrets = require('../lexlab-starter/config/secrets');
 
 var Url = require('./models/urlschema');
 
-var opTions = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };       
- 
+var opTions = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
- 
+
+
 mongoose.connect(config.db.host, opTions);
 
 app.use(bodyParser.json());
@@ -28,7 +28,7 @@ app.get('/', function(req, res){
 app.post('/api/shorten', function(req, res){
     var longUrl = req.body.url;
     var shortUrl = '';
-    
+
     Url.findOne({long_url: longUrl}, function(err, doc){
         if (doc){
             //URL has already been shortend
@@ -38,15 +38,15 @@ app.post('/api/shorten', function(req, res){
             var newUrl = new Url({
                 long_url: longUrl
             });
-            
+
             newUrl.save(function(err){
                 if (err){
                     console.log(err);
                 }
                 shortUrl = config.webhost + base58.encode(newUrl._id);
-                
+
                 res.send({'shortUrl': shortUrl});
-            });   
+            });
         }
     });
 });
@@ -54,7 +54,7 @@ app.post('/api/shorten', function(req, res){
 app.get('/:encoded_id', function(req, res){
     var base58Id = req.params.encoded_id;
     var id = base58.decode(base58Id);
-    
+
     Url.findOne({_id: id}, function(err, doc){
         if (doc){
             res.redirect(doc.long_url);
@@ -64,7 +64,7 @@ app.get('/:encoded_id', function(req, res){
     });
 });
 
-// var server = app.listen(3300, function(){
-//     console.log('server listening on port 3300');
-// });
+ var server = app.listen(3300, function(){
+     console.log('server listening on port 3300');
+ });
 module.exports = app;
