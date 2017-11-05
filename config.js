@@ -3,7 +3,7 @@ var config = {};
 
 config.db = {};
 
-config.webhost = '/l/';
+config.webhost = '/roar/';
 
 config.db.host = secrets.db2;
 config.db.name = 'lexurl_shortener';

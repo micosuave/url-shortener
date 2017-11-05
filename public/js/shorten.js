@@ -1,6 +1,6 @@
 $('.btn-shorten').on('click', function(){
     $.ajax({
-        url: '/l/api/shorten',
+        url: '/roar/api/shorten',
         type: 'POST',
         dataType: 'JSON', 
         data: {url: $('#url-field').val()},

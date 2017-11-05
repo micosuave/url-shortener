@@ -64,7 +64,7 @@ app.get('/:encoded_id', function(req, res){
     });
 });
 
- var server = app.listen(3300, function(){
-     console.log('server listening on port 3300');
- });
+ // var server = app.listen(3300, function(){
+ //     console.log('server listening on port 3300');
+ // });
 module.exports = app;
