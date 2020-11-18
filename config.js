@@ -6,6 +6,6 @@ config.db = {};
 config.webhost = '/roar/';
 
 config.db.host = secrets.db2;
-config.db.name = 'lexurl_shortener';
+config.db.name = 'lexurl-shortener';
 
 module.exports = config;
